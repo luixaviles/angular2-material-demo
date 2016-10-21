@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   DEFAULT_SPEAKERS_NUMBER: string = '6';
   newSpeaker: Speaker;
   errorMessage: string;
+  loading: boolean = true;
   speakers: Speaker[] = [];
 
   /**
@@ -48,9 +49,13 @@ export class HomeComponent implements OnInit {
    * Handle the nameListService observable
    */
   getSpeakers() {
+    this.loading = true;
     this.speakerListService.get(this.DEFAULT_SPEAKERS_NUMBER)
       .subscribe(
-        speakers => this.speakers = speakers.results,
+        speakers => {
+          this.speakers = speakers.results;
+          this.loading = false;
+        },
         error => this.errorMessage = <any>error
       );
   }

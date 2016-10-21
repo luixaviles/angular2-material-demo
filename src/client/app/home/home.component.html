@@ -2,15 +2,15 @@
   <md-card>
     <md-card-title>Add a new speaker</md-card-title>
     <md-card-content>
-      <p> Fill details below </p>
+      <p>Fill Speaker details below</p>
       <form class="home-form">
         <div>
-          <md-input [(ngModel)]="newSpeaker.name.first" name="firstName" class="home-input" placeholder="First Name" ngDefaultControl></md-input>
-          <md-input [(ngModel)]="newSpeaker.name.last" name="lastName" class="home-input" placeholder="last Name" ngDefaultControl></md-input>
+          <md-input [(ngModel)]="newSpeaker.name.first" name="firstName" class="home-input" placeholder="First Name"></md-input>
+          <md-input [(ngModel)]="newSpeaker.name.last" name="lastName" class="home-input" placeholder="last Name"></md-input>
         </div>
         <div>
-          <md-input [(ngModel)]="newSpeaker.location.city" name="city" class="home-input" placeholder="City" ngDefaultControl></md-input>
-          <md-input [(ngModel)]="newSpeaker.picture.large" name="picture" class="home-input" placeholder="Profile Picture URL" ngDefaultControl></md-input>
+          <md-input [(ngModel)]="newSpeaker.location.city" name="city" class="home-input" placeholder="City"></md-input>
+          <md-input md-tooltip="Set a valid URL to allow load your profile picture" [(ngModel)]="newSpeaker.picture.large" name="picture" class="home-input" placeholder="Profile Picture URL"></md-input>
         </div>
         <div>
           <md-checkbox indeterminate="true">Robotics</md-checkbox>
@@ -18,18 +18,18 @@
           <md-checkbox indeterminate="true">Software Industry</md-checkbox>
         </div>
         <div>
-          <button md-raised-button color="accent" (click)="addSpeaker()" class="home-button">Add</button>
+          <button md-raised-button [disabled]="!newSpeaker.name.first || !newSpeaker.name.last || !newSpeaker.location.city" color="accent" (click)="addSpeaker()" class="home-button">Add</button>
           <button md-raised-button color="primary" (click)="clear()" class="home-button">Clear</button>
         </div>
       </form>
-      <!--<div>-->
-        <!--{{speakers | json}}-->
-      <!--</div>-->
     </md-card-content>
   </md-card>
 </div>
 
-<div class="card-container">
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate" color="primary"></md-progress-bar>
+</div>
+<div class="card-container" *ngIf="!loading">
   <md-card *ngFor="let speaker of speakers" class="card-content">
     <md-card-title-group>
       <img *ngIf="speaker.picture.large" md-card-sm-image src="{{speaker.picture.large}}">
