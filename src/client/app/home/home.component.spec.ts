@@ -13,7 +13,7 @@ import {
 import { MockBackend } from '@angular/http/testing';
 import { MaterialModule } from '@angular/material';
 
-import { NameListService } from '../shared/index';
+import { SpeakerListService } from '../shared/index';
 import { HomeModule } from './home.module';
 
 
@@ -26,7 +26,7 @@ export function main() {
         imports: [FormsModule, RouterModule, HttpModule, HomeModule, MaterialModule.forRoot()],
         declarations: [TestComponent],
         providers: [
-          NameListService,
+          SpeakerListService,
           BaseRequestOptions,
           MockBackend,
           {provide: Http, useFactory: function (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) {
@@ -49,11 +49,11 @@ export function main() {
             let homeInstance = fixture.debugElement.children[0].componentInstance;
             let homeDOMEl = fixture.debugElement.children[0].nativeElement;
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
+            expect(homeInstance.speakerListService).toEqual(jasmine.any(SpeakerListService));
             expect(homeDOMEl.querySelectorAll('md-list-item').length).toEqual(0);
 
             homeInstance.newName = 'Minko';
-            homeInstance.addName();
+            homeInstance.addSpeaker();
 
             fixture.detectChanges();
 

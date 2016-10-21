@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/index';
+import { SpeakerListService } from '../shared/index';
+import { Speaker } from '../shared/speakers/speakers.model';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -13,32 +14,32 @@ import { NameListService } from '../shared/index';
 
 export class HomeComponent implements OnInit {
 
-  newName: string = '';
+  newSpeaker: Speaker;
   errorMessage: string;
-  names: any[] = [];
+  speakers: Speaker[] = [];
 
   /**
    * Creates an instance of the HomeComponent with the injected
    * NameListService.
    *
-   * @param {NameListService} nameListService - The injected NameListService.
+   * @param {SpeakerListService} speakerListService - The injected NameListService.
    */
-  constructor(public nameListService: NameListService) {}
+  constructor(public speakerListService: SpeakerListService) {}
 
   /**
    * Get the names OnInit
    */
   ngOnInit() {
-    this.getNames();
+    this.getSpeakers();
   }
 
   /**
    * Handle the nameListService observable
    */
-  getNames() {
-    this.nameListService.get()
+  getSpeakers() {
+    this.speakerListService.get()
       .subscribe(
-        names => this.names = names,
+        speakers => this.speakers = speakers.results,
         error =>  this.errorMessage = <any>error
       );
   }
@@ -47,10 +48,10 @@ export class HomeComponent implements OnInit {
    * Pushes a new name onto the names array
    * @return {boolean} false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean {
+  addSpeaker(): boolean {
     // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
+    this.speakers.push(this.newSpeaker);
+    this.newSpeaker = null;
     return false;
   }
 
