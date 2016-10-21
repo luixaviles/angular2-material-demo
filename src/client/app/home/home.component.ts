@@ -28,8 +28,12 @@ export class HomeComponent implements OnInit {
   constructor(public speakerListService: SpeakerListService) {
   }
 
+  clear() {
+    this.initModel();
+  }
+
   initModel() {
-    this.newSpeaker = new Speaker(new Name('', ''), new Location(''), '', new ProfilePicture(''), '');
+    this.newSpeaker = new Speaker(new Name('', ''), new Location(''), '', new ProfilePicture(''), 'male');
   }
 
   /**
