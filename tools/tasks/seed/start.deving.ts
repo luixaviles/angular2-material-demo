@@ -46,9 +46,10 @@ gulp.task('watch.while_deving', function () {
 });
 
 export = (done: any) =>
-  runSequence('build.test',
+  runSequence(
+    // 'build.test',
     'watch.while_deving',
     'server.start',
-    'karma.run.with_coverage',
-    'serve.coverage.watch',
+    // 'karma.run.with_coverage',
+    // 'serve.coverage.watch',
     done);
