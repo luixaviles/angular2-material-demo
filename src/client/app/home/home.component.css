@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  padding: 0 16px;
+}
+
+.home-card-container {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.home-card {
+  font-size: 14px;
+  width: 400px;
+}
+
+.home-form {
+  padding: 20px;
+}
+
+.home-input {
+  font-size: 14px;
+  width: 250px;
+}
+
+.home-button {
+  font-size: 16px;
+  margin: 10px;
+}
