@@ -14,6 +14,7 @@ import { Speaker } from '../shared/speakers/speakers.model';
 
 export class HomeComponent implements OnInit {
 
+  DEFAULT_SPEAKERS_NUMBER: string = '6';
   newSpeaker: Speaker;
   errorMessage: string;
   speakers: Speaker[] = [];
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
    * Handle the nameListService observable
    */
   getSpeakers() {
-    this.speakerListService.get()
+    this.speakerListService.get(this.DEFAULT_SPEAKERS_NUMBER)
       .subscribe(
         speakers => this.speakers = speakers.results,
         error =>  this.errorMessage = <any>error

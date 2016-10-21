@@ -23,24 +23,21 @@ export class SpeakerListService {
    * Returns an Observable for the HTTP GET request for the JSON resource.
    * @return {string[]} The Observable for the HTTP request.
    */
-  get(): Observable<Speakers> {
+  get(number: string): Observable<Speakers> {
     let params: URLSearchParams = new URLSearchParams();
     let headers: Headers = new Headers({ 'Content-Type': 'application/json' });
     let options: RequestOptions = new RequestOptions({ headers: headers });
 
     //TODO use a variable 'number'
-    params.set('results', '10');
-    // params.set('action', 'opensearch');
-    // params.set('format', 'json');
-    // params.set('callback', 'JSONP_CALLBACK');
-    return this.jsonp.get(this.USER_URL, params)
+    params.set('results', number);
+    params.set('callback', 'JSONP_CALLBACK');
+    return this.jsonp.get(this.USER_URL, {search: params})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   private extractData(res:Response) {
-    // console.log('Response', res);
-    let body = res.json()[1];
+    let body = res.json();
     return body || {};
   }
 
