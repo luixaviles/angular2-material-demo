@@ -36,7 +36,7 @@ export class SpeakerListService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
+    let body = res.json().results;
     return body || {};
   }
 

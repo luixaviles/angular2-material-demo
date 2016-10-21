@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
         speakers => {
           // Hard-coded timeout to allow display "progress-bar" component only.
           setTimeout(()=> {
-            this.speakers = speakers.results;
+            this.speakers = speakers;
             this.loading = false;
           }, 1500);
 
