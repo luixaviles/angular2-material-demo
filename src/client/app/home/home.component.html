@@ -5,19 +5,21 @@
       <p> Do you know any others? Add to the list yourself.
       </p>
       <form (submit)="addSpeaker()" class="home-form">
-        <div>
-          <md-input [(ngModel)]="newSpeaker" name="newName" class="home-input" placeholder="Awesome Computer Scientist" ngDefaultControl></md-input>
-          <button md-raised-button color="accent" type="submit" class="home-button">ADD</button>
-        </div>
+        <md-input [(ngModel)]="newSpeaker.name.first" name="newName" class="home-input" placeholder="Awesome Computer Scientist" ngDefaultControl></md-input>
+        <button md-raised-button color="accent" type="submit" class="home-button">ADD</button>
       </form>
       <div class="card-container">
         <md-card *ngFor="let speaker of speakers" class="card-content">
           <md-card-title-group>
-            <img md-card-sm-image src="path/to/img.png">
-            <md-card-title>A</md-card-title>
-            <md-card-subtitle>B</md-card-subtitle>
+            <img *ngIf="speaker.picture.large" md-card-sm-image src="{{speaker.picture.large}}">
+            <img *ngIf="!speaker.picture.large" md-card-sm-image src="./assets/angular.jpg">
+            <md-card-title>{{speaker.name.first}} {{speaker.name.last}}</md-card-title>
+            <md-card-subtitle>{{speaker.location.city}}</md-card-subtitle>
           </md-card-title-group>
         </md-card>
+      </div>
+      <div>
+        {{speakers | json}}
       </div>
     </md-card-content>
   </md-card>

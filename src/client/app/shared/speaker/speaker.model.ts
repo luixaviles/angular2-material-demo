@@ -1,8 +1,3 @@
-export class Speakers {
-  constructor(public results:Speaker[]) {
-  }
-}
-
 export class Speaker {
   constructor(public name:Name,
               public location:Location,

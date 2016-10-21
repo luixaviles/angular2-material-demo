@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SpeakerListService } from '../shared/index';
-import { Speaker } from '../shared/speakers/speakers.model';
+import {Component, OnInit} from '@angular/core';
+import {SpeakerListService} from '../shared/index';
+import {Name, Location, ProfilePicture, Speaker} from '../shared/speaker/speaker.model';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -25,12 +25,18 @@ export class HomeComponent implements OnInit {
    *
    * @param {SpeakerListService} speakerListService - The injected NameListService.
    */
-  constructor(public speakerListService: SpeakerListService) {}
+  constructor(public speakerListService: SpeakerListService) {
+  }
+
+  initModel() {
+    this.newSpeaker = new Speaker(new Name('', ''), new Location(''), '', new ProfilePicture(''), '');
+  }
 
   /**
    * Get the names OnInit
    */
   ngOnInit() {
+    this.initModel();
     this.getSpeakers();
   }
 
@@ -41,19 +47,13 @@ export class HomeComponent implements OnInit {
     this.speakerListService.get(this.DEFAULT_SPEAKERS_NUMBER)
       .subscribe(
         speakers => this.speakers = speakers.results,
-        error =>  this.errorMessage = <any>error
+        error => this.errorMessage = <any>error
       );
   }
 
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addSpeaker(): boolean {
-    // TODO: implement nameListService.post
+  addSpeaker() {
     this.speakers.push(this.newSpeaker);
-    this.newSpeaker = null;
+    this.initModel();
     return false;
   }
-
 }
