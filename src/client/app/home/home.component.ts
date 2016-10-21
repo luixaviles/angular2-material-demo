@@ -53,8 +53,14 @@ export class HomeComponent implements OnInit {
     this.speakerListService.get(this.DEFAULT_SPEAKERS_NUMBER)
       .subscribe(
         speakers => {
-          this.speakers = speakers.results;
-          this.loading = false;
+          // Hard-coded timeout to allow display "progress-bar" component only.
+          setTimeout(()=> {
+            this.speakers = speakers.results;
+            this.loading = false;
+          }, 1500);
+
+          // this.speakers = speakers.results;
+          // this.loading = false;
         },
         error => this.errorMessage = <any>error
       );
