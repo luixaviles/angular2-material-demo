@@ -1,5 +1,5 @@
-A Fully Functional Angular 2 Demo Application
-===========================================================
+An Angular 2 Tech Event application
+===============================================================================
 
 Demo Application: [https://luixaviles.github.io/angular2-material-demo/](https://luixaviles.github.io/angular2-material-demo/)
 
