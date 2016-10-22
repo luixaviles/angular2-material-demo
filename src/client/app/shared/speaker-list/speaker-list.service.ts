@@ -17,7 +17,7 @@ export class SpeakerListService {
   constructor(private http: Http, private jsonp: Jsonp) {
   }
 
-  private USER_URL = 'http://api.randomuser.me';
+  private USER_URL = 'https://api.randomuser.me';
 
   /**
    * Returns an Observable for the HTTP GET request for the JSON resource.
