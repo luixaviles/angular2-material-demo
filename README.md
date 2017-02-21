@@ -3,6 +3,11 @@ An Angular 2 Tech Event application
 
 Demo Application: [https://luixaviles.github.io/angular2-material-demo/](https://luixaviles.github.io/angular2-material-demo/)
 
+## Support this project
+- Star GitHub repository :star:
+- Create pull requests, submit bugs or suggest new features
+- Follow updates on [Twitter](https://twitter.com/luixaviles)
+
 ## Description
 
 This demo is based on [angular2-seed-material2](https://github.com/DeviantJS/angular2-seed-material2) project.
